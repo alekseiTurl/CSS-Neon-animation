@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSS Glass</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgb(71, 71, 71) 32%, rgb(0, 0, 0) 100%);
+            background-size:100%;
+            background-position: center;
+            min-height: 100dvh;
+        }
+        .element {
+            width: 400px;
+            height: 400px;
+        }
+        .neon {
+            position: relative;
+            background: repeating-conic-gradient( from var(--extent),#ff2770 0%, #ff2770 5%, transparent 5%, transparent 40%, #ff2770 50%);
+            animation: neon 4s linear infinite;
+            border-radius: 20px;
+        }
+        .neon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-conic-gradient( from var(--extent),#45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
+            animation: neon 4s linear infinite;
+            animation-delay: -1s;
+            border-radius: 20px;
+        }
+        .neon::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: #222;
+            border-radius: 20px;
+            border: 8px solid #222;
+        }
+        @property --extent
+        {
+            syntax: '<angle>';
+            inherits: false;
+            initial-value: 0deg;
+        }
+        @keyframes neon {
+            0% {
+                --extent: 0deg;
+            }
+            100% {
+                --extent: 360deg;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="element neon"></div>
+</body>
+</html>
